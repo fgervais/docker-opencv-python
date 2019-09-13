@@ -1,4 +1,4 @@
-# How to build
+# Python, OpenCV and NumPy for the Raspberry PI 4
 
 ## Setup binfmt
 
@@ -24,3 +24,7 @@ DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --platform linux/arm/v7 -t o
 
 At some point you should get
 > [+] Building 3061.7s (18/18) FINISHED
+
+## Run
+
+docker run --rm -it --device /dev/video0 francoisgervais/opencv-python:4.1.1 bash
