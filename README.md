@@ -16,6 +16,13 @@ magic 7f454c4601010100000000000000000002002800
 mask ffffffffffffff00fffffffffffffffffeffffff
 ```
 
+## Create a builder instance
+
+```
+DOCKER_CLI_EXPERIMENTAL=enabled docker buildx create --name mybuilder
+DOCKER_CLI_EXPERIMENTAL=enabled docker buildx use mybuilder
+```
+
 ## Build
 
 ```
