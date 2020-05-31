@@ -1,5 +1,7 @@
-# 3.7.3-slim-stretch
-FROM python@sha256:006abfb055c5395e1fd5fce9d342155c8c7cf44e3ef0a3e208cb6c8f46c0fc81 AS base
+FROM python:3.8.3-slim-buster AS base
+
+ARG OPENCV_VERSION=4.3.0
+ARG NUMPY_VERSION=1.18.4
 
 FROM base as build
 RUN apt-get update && apt-get -y install --no-install-recommends \
@@ -19,11 +21,11 @@ RUN apt-get update && apt-get -y install --no-install-recommends \
 	libxvidcore-dev \
 	pkg-config \
 	wget
-RUN pip wheel numpy==1.17.2
+RUN pip wheel numpy==${NUMPY_VERSION}
 RUN pip install numpy-*.whl
-RUN wget https://github.com/opencv/opencv/archive/4.1.1.tar.gz && \
-	tar xf 4.1.1.tar.gz
-WORKDIR /opencv-4.1.1/build
+RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.tar.gz && \
+	tar xf ${OPENCV_VERSION}.tar.gz
+WORKDIR /opencv-${OPENCV_VERSION}/build
 RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
 	-D CMAKE_INSTALL_PREFIX=_install \
 	-D ENABLE_NEON=ON \
@@ -39,12 +41,12 @@ RUN make install
 FROM base
 RUN apt-get update && apt-get -y install --no-install-recommends \
 	libatlas3-base \
-	libavcodec57 \
-	libavformat57 \
+	libavcodec58 \
+	libavformat58 \
 	libgtk-3-0 \
-	libswscale4 \
+	libswscale5 \
 && rm -rf /var/lib/apt/lists/*
 COPY --from=build /numpy-*.whl /
 RUN pip install numpy-*.whl
-COPY --from=build /opencv-4.1.1/build/_install/ /usr/local/
+COPY --from=build /opencv-${OPENCV_VERSION}/build/_install/ /usr/local/
 RUN ldconfig

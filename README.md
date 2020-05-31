@@ -26,7 +26,7 @@ DOCKER_CLI_EXPERIMENTAL=enabled docker buildx use mybuilder
 ## Build
 
 ```
-DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --platform linux/arm/v7 -t opencv-4.1.1 --load .
+DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --platform linux/arm/v7 -t opencv-4.3.0 --load .
 ```
 
 At some point you should get
@@ -34,4 +34,4 @@ At some point you should get
 
 ## Run
 
-docker run --rm -it --device /dev/video0 francoisgervais/opencv-python:4.1.1 bash
+docker run --rm -it --device /dev/video0 francoisgervais/opencv-python:4.3.0 bash
