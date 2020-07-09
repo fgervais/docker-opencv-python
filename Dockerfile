@@ -30,8 +30,6 @@ RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.tar.gz && \
 WORKDIR /opencv-${OPENCV_VERSION}/build
 RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
 	-D CMAKE_INSTALL_PREFIX=_install \
-	-D ENABLE_NEON=ON \
-	-D ENABLE_VFPV3=ON \
 	-D BUILD_TESTS=OFF \
 	-D OPENCV_ENABLE_NONFREE=ON \
 	-D INSTALL_PYTHON_EXAMPLES=OFF \
