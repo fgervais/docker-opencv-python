@@ -1,9 +1,11 @@
-FROM python:3.10.4-slim-buster AS base
-
 ARG OPENCV_VERSION=4.3.0
 ARG NUMPY_VERSION=1.22.3
 
+FROM python:3.10.4-slim-buster AS base
+
 FROM base as build
+ARG OPENCV_VERSION
+ARG NUMPY_VERSION
 RUN apt-get update && apt-get -y install --no-install-recommends \
 	build-essential \
 	cmake \
@@ -39,6 +41,7 @@ RUN make install
 
 
 FROM base
+ARG OPENCV_VERSION
 RUN apt-get update && apt-get -y install --no-install-recommends \
 	libatlas3-base \
 	libavcodec58 \
