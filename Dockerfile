@@ -1,7 +1,7 @@
-FROM python:3.8.3-slim-buster AS base
+FROM python:3.10.4-slim-buster AS base
 
 ARG OPENCV_VERSION=4.3.0
-ARG NUMPY_VERSION=1.18.4
+ARG NUMPY_VERSION=1.22.3
 
 FROM base as build
 RUN apt-get update && apt-get -y install --no-install-recommends \
