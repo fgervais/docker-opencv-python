@@ -5,6 +5,9 @@ on:
     branches:
       - master
 
+env:
+  OPENCV_VERSION: 4.3.0
+
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -29,7 +32,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          build-args: OPENCV_VERSION=4.3.0
+          build-args: OPENCV_VERSION=${{ env.OPENCV_VERSION }}
           platforms: linux/arm/v7
           push: true
-          tags: user/app:4.3.0-py310
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/opencv-python:${{ env.OPENCV_VERSION }}-py310
