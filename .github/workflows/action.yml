@@ -35,4 +35,6 @@ jobs:
           build-args: OPENCV_VERSION=${{ env.OPENCV_VERSION }}
           platforms: linux/arm/v7
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/opencv-python:${{ env.OPENCV_VERSION }}-py310
+          tags: >
+            ${{ secrets.DOCKERHUB_USERNAME }}/opencv-python:${{ env.OPENCV_VERSION }}-py310,
+            ${{ secrets.DOCKERHUB_USERNAME }}/opencv-python:latest
