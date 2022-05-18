@@ -29,8 +29,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          build-args:
-            - OPENCV_VERSION=4.3.0
+          build-args: OPENCV_VERSION=4.3.0
           platforms: linux/arm/v7
           push: true
           tags: user/app:4.3.0-py310
