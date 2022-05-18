@@ -6,7 +6,7 @@ on:
       - master
 
 env:
-  OPENCV_VERSION: 4.3.0
+  OPENCV_VERSION: 4.5.5
 
 jobs:
   docker:
