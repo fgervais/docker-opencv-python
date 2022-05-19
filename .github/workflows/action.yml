@@ -7,6 +7,7 @@ on:
 
 env:
   OPENCV_VERSION: 4.5.5
+  REPO_NAME: opencv-python
 
 jobs:
   docker:
@@ -36,5 +37,5 @@ jobs:
           platforms: linux/arm/v7
           push: true
           tags: >
-            ${{ secrets.DOCKERHUB_USERNAME }}/opencv-python:${{ env.OPENCV_VERSION }}-py310,
-            ${{ secrets.DOCKERHUB_USERNAME }}/opencv-python:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPO_NAME }}:${{ env.OPENCV_VERSION }}-py310,
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPO_NAME }}:latest
